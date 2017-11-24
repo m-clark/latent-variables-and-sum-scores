@@ -8,7 +8,7 @@ output:
     highlight: pygments
     toc: true
     toc_float: true
-css: ../css/notebooks/standard_html.css
+css: standard_html.css
 
 ---
 
@@ -262,7 +262,7 @@ rels = lapply(reliability_results, bind_rows) %>%
 cbind(testgrid, round(rels, 3)) %>% 
   arrange(desc(std.alpha), desc(loadings)) %>% 
   select(-factorvar) %>% 
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 
 ```
 
@@ -292,7 +292,7 @@ errs = do.call('rbind', laverrors)
 cbind(testgrid, round(coefs, 3), SEM_error_perc=round(100*errs[,7]/1000)) %>% 
   arrange(sampsize, loadings, nitems, effect) %>% 
   select(-factorvar) %>% 
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 ```
 
 <br>
@@ -310,7 +310,7 @@ cbind(testgrid, round(ses, 3),
       SEM_error_perc=round(100*errs[,7]/1000)) %>% 
   arrange(sampsize, loadings, nitems, effect) %>% 
   select(-factorvar) %>% 
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 ```
 
 <br>
@@ -332,7 +332,7 @@ ses2 = cbind(lapply(rawcoefs, function(x) apply(x, 2, sd)) %>% do.call('rbind',.
   data.frame(testgrid, .) %>% select(-factorvar)
 
 ses2 %>% 
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 ```
 <br>
 
@@ -355,7 +355,7 @@ cbind(testgrid, bias) %>%
   arrange(sampsize, loadings, nitems, effect) %>% 
   select(-factorvar, -lmsumscore, -lmitem) %>% 
   arrange(loadings) %>% 
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 
 ```
 
@@ -377,7 +377,7 @@ cbind(testgrid, bias2) %>%
   arrange(sampsize, loadings, nitems, effect) %>% 
   select(-factorvar, -lmsumscore, -lmitem) %>% 
   arrange(loadings) %>% 
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 ```
 
 <br>
@@ -398,7 +398,7 @@ cbind(testgrid, bias3) %>%
   select(-factorvar, -lmsumscore, -lmitem) %>% 
   arrange(loadings) %>% 
   round(3) %>%
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 ```
 
 
@@ -413,7 +413,7 @@ cbind(testgrid,
         data.frame %>% 
         select(7)) %>% 
   select(-factorvar) %>% 
-  DT::datatable(options=list(searching=F))
+  DT::datatable(options=list(dom='pt', pageLength=9, scrollX='100%'))
 ```
 
 
@@ -462,6 +462,10 @@ create_data_2factors <- function() {
 ```
 
 # References
+
+
+Devlieger, Mayer, & Rosseel (2015). Hypothesis Testing Using Factor Score Regression: A Comparison of Four Methods.
+
 
 Estabrook & Neale (2013). A Comparison of Factor Score Estimation Methods in the Presence of Missing Data.
 
